@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Whats That Dog?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head> 
+<body>
+  <div class = "main">
+    <h1 >What's That Dog?</h1>
+    <p style="margin-top: 0;">by Anthony Gonzalez</p>
+    <div id="dog-img">
+      <img src="<%=picture %>" height="auto" width ="300px">
+    </div>
+    <div id="options">
+      <a onclick="location.reload()"  id="tryagain"  style="text-align: center; color: #1e633a; font-size: 18px; display: none; padding-top: 10px;">Try Again?</a>
+      <div class="r">
+        <button class="option" value="<%= opt[0]%>"><%= opt[0]%></button>
+        <button class="option" value="<%= opt[1]%>"><%= opt[1]%></button>
+      </div>
+      <div class="r">
+        <button class="option" value="<%= opt[2]%>"><%= opt[2]%></button>
+        <button class="option" value="<%= opt[3]%>"><%= opt[3]%></button>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+
+    //Initiate variables
+
+    let answer = "<%= correctBreed%>"
+    let arr = document.getElementsByClassName("option")
+
+    //Assign the answer class to the option that is correct
+    for (s = 0; s < 4; s++){
+      let cur = arr[s]
+      if (cur.value == answer){
+        $(cur).addClass("answer")
+      }
+    }
+
+    //If any button is clicked, display the correct answer
+    $('button').click(function(){
+      if($(this).val() == answer) {
+        $(this).addClass("correctAnswer")
+        document.getElementById("tryagain").style.display = "block"
+      }else{
+        $(this).addClass("wrongAnswer")
+        $(".answer").addClass("correctAnswer")
+        document.getElementById("tryagain").style.display = "block"
+      }
+    })
+
+  </script>
+</body> 
+</html> 
