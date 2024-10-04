@@ -127,6 +127,8 @@ app.get("/",function(req,res){
             getUrl()
         }
 
+    }).catch(function(response){
+        res.render("error")
     })
 })
 
